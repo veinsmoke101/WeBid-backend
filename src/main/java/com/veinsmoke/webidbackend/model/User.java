@@ -15,6 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "_user")
 public class User extends SuperUser {
 
     @Column(nullable = false)

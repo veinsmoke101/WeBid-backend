@@ -4,10 +4,9 @@ package com.veinsmoke.webidbackend.model.superclass;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+@MappedSuperclass
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class SuperUser {

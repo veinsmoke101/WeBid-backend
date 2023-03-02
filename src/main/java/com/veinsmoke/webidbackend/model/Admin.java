@@ -7,7 +7,6 @@ import lombok.*;
 
 @Entity
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
 public class Admin extends SuperUser {
 }
