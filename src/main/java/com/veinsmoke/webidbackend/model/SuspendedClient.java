@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SuspendedUser {
+public class SuspendedClient {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class SuspendedUser {
     LocalDateTime suspendedUntil;
 
     @OneToOne( fetch = FetchType.LAZY )
-    User user;
+    Client client;
 
     @CreationTimestamp
     LocalDateTime createdAt;

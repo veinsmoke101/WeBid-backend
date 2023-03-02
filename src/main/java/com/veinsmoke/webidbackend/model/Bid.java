@@ -23,7 +23,7 @@ public class Bid {
     Auction auction;
 
     @ManyToOne( fetch = FetchType.LAZY )
-    User bidder;
+    Client bidder;
 
     @Column( nullable = false)
     Long bidPrice;

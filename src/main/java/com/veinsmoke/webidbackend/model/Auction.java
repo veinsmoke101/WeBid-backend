@@ -27,10 +27,10 @@ public class Auction {
     LocalDateTime endDate;
 
     @ManyToOne( fetch = FetchType.LAZY )
-    User author;
+    Client author;
 
     @ManyToOne( fetch = FetchType.LAZY )
-    User buyer;
+    Client buyer;
 
     @ManyToOne( fetch = FetchType.LAZY )
     Category category;
