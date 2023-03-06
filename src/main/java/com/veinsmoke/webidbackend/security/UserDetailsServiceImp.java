@@ -1,4 +1,4 @@
-package com.veinsmoke.webidbackend.service;
+package com.veinsmoke.webidbackend.security;
 
 import com.veinsmoke.webidbackend.model.Admin;
 import com.veinsmoke.webidbackend.model.Client;
@@ -29,7 +29,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
         String type = emailAndType.split(":")[1];
 
         switch (type) {
-            case "user" -> {
+            case "client" -> {
                 Client client = clientRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Client not found"));
                 return new User(email, client.getPassword(), Collections.singleton(new SimpleGrantedAuthority("CLIENT")));
             }

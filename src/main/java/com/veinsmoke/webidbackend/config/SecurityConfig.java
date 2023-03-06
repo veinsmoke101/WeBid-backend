@@ -1,7 +1,7 @@
 package com.veinsmoke.webidbackend.config;
 
 import com.veinsmoke.webidbackend.security.JWTAuthFilter;
-import com.veinsmoke.webidbackend.service.UserDetailsServiceImp;
+import com.veinsmoke.webidbackend.security.UserDetailsServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
