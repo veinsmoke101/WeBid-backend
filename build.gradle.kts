@@ -24,6 +24,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-hateoas")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("com.cloudinary:cloudinary-http44:1.32.0")
     implementation("com.cloudinary:cloudinary-core:1.32.0")
     implementation("io.jsonwebtoken:jjwt-impl:0.11.5")

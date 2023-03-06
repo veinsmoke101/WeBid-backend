@@ -31,9 +31,9 @@ public class SecurityConfig {
             .csrf().disable()
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers("/login/admin", "/login", "/register").permitAll()
+                    .requestMatchers("/login/admin", "/login/client", "/register").permitAll()
                     .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                    .requestMatchers("/user/**").hasAuthority("CLIENT")
+                    .requestMatchers("/client/**").hasAuthority("CLIENT")
                     .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
@@ -45,10 +45,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return userDetailsService;
-    }
 
     @Bean
     public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder){
