@@ -4,6 +4,7 @@ package com.veinsmoke.webidbackend.model;
 import com.veinsmoke.webidbackend.model.superclass.SuperUser;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Client extends SuperUser {
@@ -21,6 +22,14 @@ public class Client extends SuperUser {
     String name;
 
     String profileImg;
+
+    @Column(nullable = false)
+    String verificationCode;
+
+    LocalDateTime verificationTokenExpireAt;
+
+    @Column( columnDefinition = "boolean default false")
+    Boolean verified;
 
     @OneToMany( mappedBy = "author", fetch = FetchType.LAZY)
     List<Auction> auctionsCreated;
@@ -35,4 +44,9 @@ public class Client extends SuperUser {
     LocalDateTime createdAt;
     @CreationTimestamp
     LocalDateTime updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        this.verified = false;
+    }
 }
