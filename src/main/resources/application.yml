@@ -3,7 +3,7 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
   datasource:
     url: ${DATASOURCE_URL:jdbc:postgresql://localhost:54320/webid}
     username: ${POSTGRES_USER:postgres}
@@ -12,3 +12,24 @@ spring:
   sql:
     init:
       platform: postgres
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: tahamr08@gmail.com
+    password: yncyezbehldaadko
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  error:
+    include-message: always
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
