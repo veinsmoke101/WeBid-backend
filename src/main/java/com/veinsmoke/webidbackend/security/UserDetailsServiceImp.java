@@ -1,5 +1,6 @@
 package com.veinsmoke.webidbackend.security;
 
+import com.veinsmoke.webidbackend.exception.UserNotVerifiedException;
 import com.veinsmoke.webidbackend.model.Admin;
 import com.veinsmoke.webidbackend.model.Client;
 import com.veinsmoke.webidbackend.repository.AdminRepository;
@@ -31,6 +32,9 @@ public class UserDetailsServiceImp implements UserDetailsService {
         switch (type) {
             case "client" -> {
                 Client client = clientRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Client not found"));
+                if(Boolean.FALSE.equals(client.getVerified())) {
+                    throw new UserNotVerifiedException("Client not verified");
+                }
                 return new User(email, client.getPassword(), Collections.singleton(new SimpleGrantedAuthority("CLIENT")));
             }
             case "admin" -> {

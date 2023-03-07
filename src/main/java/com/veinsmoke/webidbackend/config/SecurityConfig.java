@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,14 +30,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf().disable()
-            .authorizeHttpRequests(authorizeRequests ->
+                .sessionManagement(sessionManagement ->
+                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers("/login/admin", "/login/client", "/register").permitAll()
+                    .requestMatchers("/login/admin", "/login/client", "/register", "/verify").permitAll()
                     .requestMatchers("/admin/**").hasAuthority("ADMIN")
                     .requestMatchers("/client/**").hasAuthority("CLIENT")
-                    .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
@@ -58,5 +62,7 @@ public class SecurityConfig {
     public AuthenticationManager authManager(AuthenticationProvider authenticationProvider)  {
         return new ProviderManager(List.of(authenticationProvider));
     }
+
+
 
 }

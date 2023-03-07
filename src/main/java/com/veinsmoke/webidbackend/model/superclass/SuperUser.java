@@ -3,12 +3,14 @@ package com.veinsmoke.webidbackend.model.superclass;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @MappedSuperclass
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 public class SuperUser {
 
     @Id
