@@ -7,8 +7,6 @@ import com.veinsmoke.webidbackend.mapper.ClientMapper;
 import com.veinsmoke.webidbackend.model.Client;
 import com.veinsmoke.webidbackend.service.ClientService;
 import com.veinsmoke.webidbackend.util.EmailSender;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,7 +33,7 @@ public class RegisterController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<HashMap<String, String>> register(@Valid @RequestBody RegisterRequest registerRequest, HttpServletResponse response) {
+    public ResponseEntity<HashMap<String, String>> register(@Valid @RequestBody RegisterRequest registerRequest) {
         clientService.findByEmail(registerRequest.email()).ifPresent(client -> {
             throw new EmailAlreadyExistException("Email already exists");
         });
@@ -54,12 +52,6 @@ public class RegisterController {
                 "http://localhost:8080/verify?code=" + verificationCode;
         emailSender.sendSimpleMessage(client.getEmail(), "WeBid account verification", mailBody);
 
-        // set email cookie
-        Cookie cookie = new Cookie("email", client.getEmail());
-        cookie.setMaxAge(60 * 15);
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
-
         // save client
         clientService.saveClient(client);
 
@@ -71,7 +63,7 @@ public class RegisterController {
     }
 
     @GetMapping("/verify")
-    public ResponseEntity<HashMap<String, String>> verify(@RequestParam String code, @CookieValue("email") String email) {
+    public ResponseEntity<HashMap<String, String>> verify(@RequestParam String code, @RequestParam String email) {
         HashMap<String, String> responseBody = new HashMap<>();
         Optional<Client> clientOptional = clientService.findByVerificationCodeAndEmail(code, email);
 
