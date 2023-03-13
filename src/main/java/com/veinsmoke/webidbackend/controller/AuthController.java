@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -46,7 +46,7 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/client")
+    @PostMapping
     public ResponseEntity<HashMap<String, String>> loginClient(@Valid @RequestBody LoginRequest loginRequest) {
         return login(loginRequest, "client");
     }

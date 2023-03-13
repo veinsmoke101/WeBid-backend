@@ -37,7 +37,7 @@ public class SecurityConfig {
                 authorizeRequests
                     .requestMatchers("/login/admin", "/login/client", "/register", "/verify").permitAll()
                     .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                    .requestMatchers("/client/**").hasAuthority("CLIENT")
+                    .requestMatchers("/client/**", "/auction/**").hasAuthority("CLIENT")
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

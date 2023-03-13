@@ -25,6 +25,8 @@ public class Auction {
     String description;
     LocalDateTime startDate;
     LocalDateTime endDate;
+    Double startingPrice;
+    Double buyNowPrice;
 
     @ManyToOne( fetch = FetchType.LAZY )
     Client author;
@@ -37,6 +39,9 @@ public class Auction {
 
     @OneToMany( mappedBy = "auction", fetch = FetchType.LAZY)
     List<Bid> bids;
+
+    @OneToMany( mappedBy = "auction", fetch = FetchType.LAZY)
+    List<Image> images;
 
     @CreationTimestamp
     LocalDateTime createdAt;
