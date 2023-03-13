@@ -1,4 +1,12 @@
 spring:
+  cloud:
+    vault:
+      token: ${VAULT_TOKEN:hvs.SVdPkfnqHi6xqOZHaAcbURp4}
+      scheme: http
+      kv:
+        enabled: true
+  config:
+    import: vault://
   jpa:
     database: POSTGRESQL
     show-sql: true
@@ -15,18 +23,23 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: tahamr08@gmail.com
-    password: yncyezbehldaadko
+    username: ${MAIL_USERNAME:tahamr08@gmail.com}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+  application:
+    name: we-bid
+
 
 server:
   error:
     include-message: always
+  servlet:
+    context-path: /api/v1
 
 logging:
   level:
