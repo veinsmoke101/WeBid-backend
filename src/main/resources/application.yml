@@ -1,8 +1,11 @@
 spring:
+  application:
+    name: we-bid
   cloud:
     vault:
-      token: ${VAULT_TOKEN:hvs.SVdPkfnqHi6xqOZHaAcbURp4}
+      token: ${VAULT_TOKEN:hvs.pBkMcZxHDTH7lyANLuueKG0k}
       scheme: http
+      port: 8200
       kv:
         enabled: true
   config:
@@ -12,6 +15,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     url: ${DATASOURCE_URL:jdbc:postgresql://localhost:54320/webid}
     username: ${POSTGRES_USER:postgres}
@@ -23,23 +27,19 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL_USERNAME:tahamr08@gmail.com}
-    password: ${MAIL_PASSWORD}
+    username: ${mail.username:tahamr08@gmail.com}
+    password: ${mail.password:123}
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-  application:
-    name: we-bid
-
 
 server:
   error:
     include-message: always
-  servlet:
-    context-path: /api/v1
+
 
 logging:
   level:
