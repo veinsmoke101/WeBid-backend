@@ -22,5 +22,8 @@ public class Image {
     @ManyToOne( fetch = FetchType.LAZY )
     Auction auction;
 
+    public Image(String name) {
+        this.name = name;
+    }
 
 }
