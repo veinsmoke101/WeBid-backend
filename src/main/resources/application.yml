@@ -3,7 +3,7 @@ spring:
     name: we-bid
   cloud:
     vault:
-      token: ${VAULT_TOKEN:hvs.pBkMcZxHDTH7lyANLuueKG0k}
+      token: ${VAULT_TOKEN:00000000-0000-0000-0000-000000000000}
       scheme: http
       port: 8200
       kv:
@@ -14,7 +14,7 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     url: ${DATASOURCE_URL:jdbc:postgresql://localhost:54320/webid}
@@ -46,3 +46,5 @@ logging:
     org:
       springframework:
         security: DEBUG
+
+path: /api/v1

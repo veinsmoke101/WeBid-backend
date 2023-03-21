@@ -3,6 +3,7 @@ package com.veinsmoke.webidbackend.config;
 import com.veinsmoke.webidbackend.security.JWTAuthFilter;
 import com.veinsmoke.webidbackend.security.UserDetailsServiceImp;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +27,9 @@ public class SecurityConfig {
     private final JWTAuthFilter jwtAuthFilter;
     private final UserDetailsServiceImp userDetailsService;
 
+    @Value("${path}")
+    private static String path ;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -35,9 +39,17 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers("/login/admin", "/login/client", "/register", "/verify").permitAll()
+                    .requestMatchers(
+                            path + "/auth/admin",
+                            path + "/auth",
+                            path + "/register",
+                            path + "/verify"
+                    ).permitAll()
                     .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                    .requestMatchers("/client/**", "/auction/**").hasAuthority("CLIENT")
+                    .requestMatchers(
+                            path + "/client/**",
+                            path + "/auction/**"
+                    ).hasAuthority("CLIENT")
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

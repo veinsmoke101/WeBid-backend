@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +31,13 @@ public class AuctionService {
         auction.setAuthor(author);
         auction.setCategory(category);
 
-        auction.setImages(imageService.saveAll(auctionRequest.images()));
+        auction.setImages(imageService.saveAll(auctionRequest.images(), auction));
         auctionRepository.save(auction);
     }
+
+    public Optional<Auction> find(Long id) {
+        return auctionRepository.findById(id);
+    }
 }
+
+

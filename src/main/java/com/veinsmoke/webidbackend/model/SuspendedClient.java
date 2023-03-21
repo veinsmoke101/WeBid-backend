@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SuspendedClient {
+public class SuspendedClient  {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)

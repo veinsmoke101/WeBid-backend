@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Auction {
+public class Auction  {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)

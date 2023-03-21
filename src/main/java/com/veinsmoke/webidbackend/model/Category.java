@@ -25,7 +25,7 @@ public class Category {
     List<Auction> auction;
 
     @ManyToOne( fetch = FetchType.LAZY)
-    Category parentCategory;
+    Category parent;
 
     @CreationTimestamp
     LocalDateTime createdAt;

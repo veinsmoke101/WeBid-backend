@@ -8,4 +8,5 @@ import org.mapstruct.Mapper;
 public interface ClientMapper {
     
     Client registerRequestToClient(RegisterRequest registerRequest);
+    String clientToEmail(Client client);
 }
