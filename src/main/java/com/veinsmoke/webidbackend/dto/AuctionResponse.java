@@ -8,6 +8,7 @@ import java.util.List;
 public record AuctionResponse(Long id,
                              String title,
                              String description,
+                             String channelId,
                              LocalDateTime startDate,
                              LocalDateTime endDate,
                              Double startingPrice,

@@ -6,7 +6,7 @@ import com.veinsmoke.webidbackend.exception.EmailAlreadyExistException;
 import com.veinsmoke.webidbackend.mapper.ClientMapper;
 import com.veinsmoke.webidbackend.model.Client;
 import com.veinsmoke.webidbackend.service.ClientService;
-import com.veinsmoke.webidbackend.util.EmailSender;
+import com.veinsmoke.webidbackend.dto.util.EmailSender;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

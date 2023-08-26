@@ -39,6 +39,7 @@ spring:
 server:
   error:
     include-message: always
+  port: 8080
 
 
 logging:
@@ -47,4 +48,3 @@ logging:
       springframework:
         security: DEBUG
 
-path: /api/v1

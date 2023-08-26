@@ -41,6 +41,8 @@ dependencies {
     implementation("org.mapstruct:mapstruct-processor:1.5.3.Final")
     implementation("com.cloudinary:cloudinary-core:1.24.0")
     implementation("com.cloudinary:cloudinary-http44:1.24.0")
+    implementation("io.ably:ably-java:1.2.3")
+    implementation("com.google.code.gson:gson:2.8.6")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")

@@ -10,6 +10,7 @@ import org.mapstruct.Mapping;
 public interface AuctionMapper {
 
     @Mapping(target = "category", ignore = true)
+    @Mapping( target = "images", ignore = true)
     Auction auctionRequestToAuction(AuctionRequest auctionRequest);
 
     @Mapping( target = "author", source = "auction.author.email")

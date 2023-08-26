@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -23,6 +25,10 @@ public class Auction  {
     String title;
     @Column(nullable = false)
     String description;
+
+    @Column(nullable = false)
+    String channelId;
+
     LocalDateTime startDate;
     LocalDateTime endDate;
     Double startingPrice;
@@ -48,4 +54,8 @@ public class Auction  {
     @CreationTimestamp
     LocalDateTime updatedAt;
 
+    @PrePersist
+    public void setChannelId() {
+        channelId = UUID.randomUUID().toString();
+    }
 }

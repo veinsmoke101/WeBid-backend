@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.security.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,11 +28,11 @@ public class Bid {
     Client bidder;
 
     @Column( nullable = false)
-    Long bidPrice;
+    Double bidPrice;
 
     @CreationTimestamp
-    LocalDateTime createdAt;
+    Instant createdAt;
     @UpdateTimestamp
-    LocalDateTime updatedAt;
+    Instant updatedAt;
 
 }

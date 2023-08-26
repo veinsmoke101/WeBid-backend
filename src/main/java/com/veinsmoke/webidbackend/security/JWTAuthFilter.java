@@ -1,6 +1,6 @@
 package com.veinsmoke.webidbackend.security;
 
-import com.veinsmoke.webidbackend.util.JwtUtil;
+import com.veinsmoke.webidbackend.dto.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
